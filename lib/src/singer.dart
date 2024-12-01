@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:openvb/openvb.dart';
 import 'package:openvb/src/ffi/main.dart';
 import 'package:openvb/src/library.dart';
 
@@ -67,6 +68,26 @@ class Singer {
     final result = writeEncoded(path: path, content: json);
 
     return Future.value(result);
+  }
+
+  // Getters
+  List<Utterance> get utterances {
+    List<Utterance> utterances = [];
+
+    for(var library in libraries) {
+      utterances.addAll(library.utterances);
+    }
+
+    return utterances;
+  }
+  List<FileDescriptor> get files {
+    List<FileDescriptor> files = [];
+
+    for(var library in libraries) {
+      files.addAll(library.files);
+    }
+
+    return files;
   }
 }
 
