@@ -15,6 +15,11 @@ class Singer {
 
   List<Library> libraries;
 
+  @JsonKey(includeIfNull: false, name: 'flag_fields')
+  List<String>? flagFields;
+  @JsonKey(includeIfNull: false, name: 'extra_fields')
+  List<(String, String)>? extraFields;
+
   Singer({required this.meta, required this.origin, required this.language, required this.libraries});
 
   // JSON serialization

@@ -13,14 +13,41 @@ Singer _$SingerFromJson(Map<String, dynamic> json) => Singer(
       libraries: (json['libraries'] as List<dynamic>)
           .map((e) => Library.fromJson(e as Map<String, dynamic>))
           .toList(),
-    );
+    )
+      ..flagFields = (json['flag_fields'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList()
+      ..extraFields = (json['extra_fields'] as List<dynamic>?)
+          ?.map((e) => _$recordConvert(
+                e,
+                ($jsonValue) => (
+                  $jsonValue[r'$1'] as String,
+                  $jsonValue[r'$2'] as String,
+                ),
+              ))
+          .toList();
 
 Map<String, dynamic> _$SingerToJson(Singer instance) => <String, dynamic>{
       'meta': instance.meta,
       'origin': instance.origin,
       'language': instance.language,
       'libraries': instance.libraries,
+      if (instance.flagFields case final value?) 'flag_fields': value,
+      if (instance.extraFields
+              ?.map((e) => <String, dynamic>{
+                    r'$1': e.$1,
+                    r'$2': e.$2,
+                  })
+              .toList()
+          case final value?)
+        'extra_fields': value,
     };
+
+$Rec _$recordConvert<$Rec>(
+  Object? value,
+  $Rec Function(Map) convert,
+) =>
+    convert(value as Map<String, dynamic>);
 
 Meta _$MetaFromJson(Map<String, dynamic> json) => Meta(
       name: json['name'] as String,

@@ -41,6 +41,7 @@ Utterance _$UtteranceFromJson(Map<String, dynamic> json) => Utterance(
       pitch: (json['pitch'] as num?)?.toInt(),
       start: Timestamp.fromJson(json['start'] as Map<String, dynamic>),
       end: Timestamp.fromJson(json['end'] as Map<String, dynamic>),
+      midpoint: Timestamp.fromJson(json['midpoint'] as Map<String, dynamic>),
       extras: json['extras'] as Map<String, dynamic>?,
       flags: (json['flags'] as num).toInt(),
       areas: (json['areas'] as Map<String, dynamic>?)?.map(
@@ -71,6 +72,7 @@ Map<String, dynamic> _$UtteranceToJson(Utterance instance) => <String, dynamic>{
       if (instance.language case final value?) 'language': value,
       if (instance.pitch case final value?) 'pitch': value,
       'start': instance.start,
+      'midpoint': instance.midpoint,
       'end': instance.end,
       if (instance.extras case final value?) 'extras': value,
       'flags': instance.flags,

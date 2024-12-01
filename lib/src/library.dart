@@ -18,6 +18,11 @@ class Library {
 
   List<FileDescriptor> files;
 
+  @JsonKey(includeIfNull: false, name: 'flag_fields')
+  List<String>? flagFields;
+  @JsonKey(includeIfNull: false, name: 'extra_fields')
+  List<(String, String)>? extraFields;
+
   Library({required this.name, required this.uuid, required this.basePath, this.language, required this.isDefault, required this.files});
 
   // JSON serialization

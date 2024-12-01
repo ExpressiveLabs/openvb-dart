@@ -48,7 +48,9 @@ class Utterance {
   int? pitch;
 
   Timestamp start;
+  Timestamp midpoint;
   Timestamp end;
+  
 
   @JsonKey(includeIfNull: false)
   Map<String, dynamic>? extras;
@@ -59,7 +61,7 @@ class Utterance {
   @JsonKey(includeIfNull: false)
   (int, int, int)? minified;
 
-  Utterance({required this.prev, required this.curr, required this.next, this.audioPath, this.language, this.pitch, required this.start, required this.end, this.extras, required this.flags, this.areas, this.minified});
+  Utterance({required this.prev, required this.curr, required this.next, this.audioPath, this.language, this.pitch, required this.start, required this.end, required this.midpoint, this.extras, required this.flags, this.areas, this.minified});
 
   // JSON serialization
   factory Utterance.fromJson(Map<String, dynamic> json) => _$UtteranceFromJson(json);
