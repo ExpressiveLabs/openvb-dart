@@ -5,6 +5,9 @@ part 'utterance.g.dart';
 
 @JsonSerializable()
 class FileDescriptor {
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  late int id;
+
   String path;
   List<String> aliases;
   
@@ -24,8 +27,10 @@ class FileDescriptor {
   // JSON serialization
   factory FileDescriptor.fromJson(Map<String, dynamic> json) {
     FileDescriptor data = _$FileDescriptorFromJson(json);
-    for(var label in data.labels) {
-      label.audioPath = data.path;
+
+    for(var i = 0; i < data.labels.length; i++) {
+      data.labels[i].id = i;
+      data.labels[i].audioPath = data.path;
     }
 
     return data;
@@ -35,6 +40,9 @@ class FileDescriptor {
 
 @JsonSerializable()
 class Utterance {
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  late int id;
+
   String prev;
   String curr;
   String next;

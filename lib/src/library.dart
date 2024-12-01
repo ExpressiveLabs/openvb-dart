@@ -26,7 +26,15 @@ class Library {
   Library({required this.name, required this.uuid, required this.basePath, this.language, required this.isDefault, required this.files});
 
   // JSON serialization
-  factory Library.fromJson(Map<String, dynamic> json) => _$LibraryFromJson(json);
+  factory Library.fromJson(Map<String, dynamic> json) {
+    Library data = _$LibraryFromJson(json);
+
+    for(var i = 0; i < data.files.length; i++) {
+      data.files[i].id = i;
+    }
+
+    return data;
+  }
   Map<String, dynamic> toJson() => _$LibraryToJson(this);
 
 
