@@ -37,11 +37,24 @@ class Timestamp {
   }
 
   // Implement comparison methods
+  @override
   bool operator ==(Object other) {
     if (other is Timestamp) {
       return value == other.value;
     }
     return false;
+  }
+  bool operator <(Timestamp other) {
+    return value < other.value;
+  }
+  bool operator <=(Timestamp other) {
+    return value <= other.value;
+  }
+  bool operator >(Timestamp other) {
+    return value > other.value;
+  }
+  bool operator >=(Timestamp other) {
+    return value >= other.value;
   }
 
   int get hashCode => value.hashCode;
