@@ -1,5 +1,8 @@
 # OpenVBconf for Dart
-This repository contains a Dart implementation of the OpenVBconf standard, developed by ExpressiveLabs. It relies on a small Rust core that uses the [`openvb-rs`](https://github.com/ExpressiveLabs/openvb-rs) crate to read and write encoded OpenVB config files.
+This repository contains a Dart implementation of the OpenVBconf standard, developed by ExpressiveLabs.
+
+### Warning
+This package currently only supports OpenVB configurations in JSON format. For binary format OpenVB files, please use the [`openvb-rs`](https://github.com/ExpressiveLabs/openvb-rs) crate.
 
 ## Installation
 This package is not on pub.dev (yet). To use it, add the following to your `pubspec.yaml`:
@@ -12,10 +15,10 @@ dependencies:
 ```
 
 ## How to use
-This package relies on native assets. Compile with the `--enable-experiment=native-assets` flag:
+<!-- This package relies on native assets. Compile with the `--enable-experiment=native-assets` flag:
 ```bash
 dart --enable-experiment=native-assets` run
-```
+``` -->
 
 Usage is pretty straightforward:
 ```dart

@@ -83,4 +83,7 @@ class Timestamp {
   factory Timestamp.fromSeconds(double seconds) {
     return Timestamp((seconds * 1000000.0).toInt().toUnsigned(64));
   }
+  factory Timestamp.zero() {
+    return Timestamp(0);
+  }
 }

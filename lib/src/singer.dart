@@ -3,8 +3,6 @@ import 'dart:io';
 
 import 'package:json_annotation/json_annotation.dart';
 import 'package:openvb/openvb.dart';
-import 'package:openvb/src/ffi/main.dart';
-import 'package:openvb/src/library.dart';
 
 part 'singer.g.dart';
 
@@ -34,7 +32,10 @@ class Singer {
 
     if(path.endsWith('.bin')) {
       // Read encoded OpenVB file (*.bin pattern)
-      content = readEncoded(path: path);
+      // content = readEncoded(path: path);
+
+      // .bin file is currently not supported, use openvb-rs instead
+      throw UnimplementedError();
     } else {
       // Read JSON file
       content = File(path).readAsStringSync();
@@ -63,12 +64,12 @@ class Singer {
     File(path).writeAsStringSync(json);
   }
 
-  Future<bool> toEncoded(String path, {bool encrypt=false}) {
-    final json = jsonEncode(this);
-    final result = writeEncoded(path: path, content: json);
+  // Future<bool> toEncoded(String path, {bool encrypt=false}) {
+  //   final json = jsonEncode(this);
+  //   final result = writeEncoded(path: path, content: json);
 
-    return Future.value(result);
-  }
+  //   return Future.value(result);
+  // }
 
   // Getters
   List<Utterance> get utterances {
